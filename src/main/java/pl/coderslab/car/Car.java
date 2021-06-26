@@ -17,6 +17,9 @@ public class Car {
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
 
+    @ManyToOne
+    private User user;
+
     public String getModelName() {
         return modelName;
     }
@@ -74,5 +77,13 @@ public class Car {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

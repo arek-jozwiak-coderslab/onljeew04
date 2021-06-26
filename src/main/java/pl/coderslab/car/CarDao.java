@@ -28,7 +28,7 @@ public class CarDao {
 
     public void deleteById(long id) {
         Car byId = this.findById(id);
-        entityManager.remove(entityManager.contains(byId) ?
-                byId : entityManager.merge(byId));
+        entityManager.remove(
+                entityManager.contains(byId) ? byId : entityManager.merge(byId));
     }
 }
