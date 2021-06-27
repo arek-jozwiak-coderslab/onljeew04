@@ -12,10 +12,19 @@ public class Car {
     @Column(name = "model_name")
     private String modelName;
     private String description;
+    private String[] skills;
     @Transient
     private String modelCapitalize;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
+
+    public String[] getSkills() {
+        return skills;
+    }
+
+    public void setSkills(String[] skills) {
+        this.skills = skills;
+    }
 
     @Override
     public String toString() {

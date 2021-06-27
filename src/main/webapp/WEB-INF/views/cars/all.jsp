@@ -12,6 +12,9 @@
     <title>Title</title>
 </head>
 <body>
+<p>
+    <a href='<c:url value="/car/add"/>'>Dodaj pojazd</a>
+</p>
 <table>
     <tr>
         <th>id</th>
