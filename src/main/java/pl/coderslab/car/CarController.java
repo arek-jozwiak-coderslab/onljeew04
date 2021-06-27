@@ -2,6 +2,7 @@ package pl.coderslab.car;
 
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,6 +17,17 @@ public class CarController {
     public CarController(UserDao userDao, CarService carService) {
         this.userDao = userDao;
         this.carService = carService;
+    }
+
+
+    @RequestMapping("/all")
+
+    public String allCars(Model model) {
+        List<Car> all = carService.findAll();
+        all.forEach(c -> System.out.println(c));
+
+        model.addAttribute("cars", carService.findAll());
+        return "cars/all";
     }
 
     @RequestMapping("/add")

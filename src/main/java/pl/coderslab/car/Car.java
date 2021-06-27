@@ -17,6 +17,18 @@ public class Car {
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
 
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", modelName='" + modelName + '\'' +
+                ", description='" + description + '\'' +
+                ", modelCapitalize='" + modelCapitalize + '\'' +
+                ", createdOn=" + createdOn +
+                ", updatedOn=" + updatedOn +
+                '}';
+    }
+
     @ManyToOne
     private User user;
 

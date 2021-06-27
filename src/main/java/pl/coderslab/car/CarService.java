@@ -2,6 +2,8 @@ package pl.coderslab.car;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CarService {
 
@@ -11,9 +13,13 @@ public class CarService {
         this.carDao = carDao;
     }
 
-    public void save(Car car){
+    public void save(Car car) {
         // sending email to newsletter
         carDao.save(car);
         // add info to workers
+    }
+
+    public List<Car> findAll() {
+        return carDao.findAll();
     }
 }
