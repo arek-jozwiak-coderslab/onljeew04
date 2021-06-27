@@ -32,7 +32,8 @@
             <td>${book.rating}</td>
             <td>${book.description}</td>
             <td>
-                <a href="">usuń</a>
+                <a href='<c:url value="/book-form/delete?id=${book.id}"/>'>usuń</a>
+                <a href='<c:url value="/book-form/edit?id=${book.id}"/>'>edytuj</a>
             </td>
         </tr>
     </c:forEach>

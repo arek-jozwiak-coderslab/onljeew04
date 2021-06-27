@@ -18,7 +18,8 @@ public class CarController {
     public List<String> checkOptions() {
         System.out.println("checkOptions()");
         String[] a = new String[]{"java", "php", "ruby", "python"};
-        return Arrays.asList(a);
+        List<String> strings = Arrays.asList(a);
+        return  strings;
     }
 
     private final CarService carService;
@@ -31,7 +32,7 @@ public class CarController {
     @RequestMapping("/all")
     public String allCars(Model model) {
         List<Car> all = carService.findAll();
-        all.forEach(c -> System.out.println(c));
+        all.forEach(System.out::println);
         model.addAttribute("cars", carService.findAll());
         return "cars/all";
     }

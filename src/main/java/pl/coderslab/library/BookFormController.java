@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RequestMapping("/book-form")
 @Controller
@@ -35,6 +36,27 @@ public class BookFormController {
     @PostMapping("/add")
     public String save(Book book) {
         bookDao.save(book);
+        return "redirect:/book-form/all";
+    }
+
+    @GetMapping("/edit")
+    public String editSave(Model model, @RequestParam long id) {
+        model.addAttribute("publishers", publisherDao.findAll());
+        model.addAttribute("book", bookDao.findById(id));
+        return "books/edit";
+    }
+
+    @PostMapping("/edit")
+    public String edit(Book book) {
+        bookDao.update(book);
+        return "redirect:/book-form/all";
+    }
+
+
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam long id) {
+        bookDao.deleteById(id);
         return "redirect:/book-form/all";
     }
 }

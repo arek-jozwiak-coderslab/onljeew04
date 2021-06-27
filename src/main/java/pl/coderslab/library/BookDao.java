@@ -1,6 +1,7 @@
 package pl.coderslab.library;
 
 import org.springframework.stereotype.Repository;
+import pl.coderslab.car.Car;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,6 +18,9 @@ public class BookDao {
 
     public void save(Book book) {
         entityManager.persist(book);
+    }
+    public void update(Book book) {
+        entityManager.merge(book);
     }
 
     public List<Book> findAll() {
@@ -38,4 +42,13 @@ public class BookDao {
                .getResultList();
     }
 
+    public void deleteById(long id) {
+        Book byId = this.findById(id);
+        entityManager.remove(
+                entityManager.contains(byId) ? byId : entityManager.merge(byId));
+    }
+
+    public Book findById(long id) {
+        return entityManager.find(Book.class, id);
+    }
 }
