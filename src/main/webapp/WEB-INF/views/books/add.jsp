@@ -14,10 +14,10 @@
 </head>
 <body>
 
-<form:form modelAttribute="car">
-    <form:input path="modelName"/>
-    <form:input path="description"/>
-    <form:select path="category" items="${categories}" itemLabel="name" itemValue="id"/>
+<form:form modelAttribute="book">
+    <form:input path="title"/>
+    <form:input path="rating"/>
+    <form:select path="publisher" items="${publishers}" itemLabel="name" itemValue="id"/>
     <input type="submit">
 </form:form>
 

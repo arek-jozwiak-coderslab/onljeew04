@@ -1,10 +1,17 @@
 package pl.coderslab.car;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "cars")
+
+@Getter
+@Setter
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,70 +19,17 @@ public class Car {
     @Column(name = "model_name")
     private String modelName;
     private String description;
-    private String[] skills;
     @Transient
     private String modelCapitalize;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
 
-    public String[] getSkills() {
-        return skills;
-    }
-
-    public void setSkills(String[] skills) {
-        this.skills = skills;
-    }
-
-    @Override
-    public String toString() {
-        return "Car{" +
-                "id=" + id +
-                ", modelName='" + modelName + '\'' +
-                ", description='" + description + '\'' +
-                ", modelCapitalize='" + modelCapitalize + '\'' +
-                ", createdOn=" + createdOn +
-                ", updatedOn=" + updatedOn +
-                '}';
-    }
-
     @ManyToOne
-    private User user;
-
-    public String getModelName() {
-        return modelName;
-    }
-
-    public Car setModelName(String modelName) {
-        this.modelName = modelName;
-        return this;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDateTime getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(LocalDateTime createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    public LocalDateTime getUpdatedOn() {
-        return updatedOn;
-    }
-
-    public void setUpdatedOn(LocalDateTime updatedOn) {
-        this.updatedOn = updatedOn;
-    }
+    private Category category;
 
     @PrePersist
     public void prePersist() {
+
         createdOn = LocalDateTime.now();
     }
 
@@ -84,28 +38,10 @@ public class Car {
         updatedOn = LocalDateTime.now();
     }
 
+    @ManyToOne
+    private User user;
 
-    public String getModelCapitalize() {
-        return modelCapitalize;
-    }
-
-    public void setModelCapitalize(String modelCapitalize) {
-        this.modelCapitalize = modelCapitalize;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public String toString() {
+        return "Car(id=" + this.getId() + ", modelName=" + this.getModelName() + ", description=" + this.getDescription() + ", modelCapitalize=" + this.getModelCapitalize() + ", user=" + this.getUser() + ")";
     }
 }

@@ -1,4 +1,4 @@
-package pl.coderslab.library;
+package pl.coderslab.car;
 
 import org.springframework.stereotype.Repository;
 
@@ -9,22 +9,20 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class PublisherDao {
+public class CategoryDao {
 
     @PersistenceContext
     EntityManager entityManager;
 
-    public void save(Publisher publisher) {
-        entityManager.persist(publisher);
-    }
 
-    public List<Publisher> findAll() {
+    public List<Category> findAll() {
         return entityManager
-                .createQuery("select b from Publisher b")
+                .createQuery("SELECT c from Category c")
                 .getResultList();
     }
 
-    public Publisher findById(long id) {
-        return entityManager.find(Publisher.class, id);
+
+    public Category findById(long id) {
+        return entityManager.find(Category.class, id);
     }
 }

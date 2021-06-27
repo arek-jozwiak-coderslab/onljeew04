@@ -12,6 +12,8 @@ import java.util.List;
 @RequestMapping("/car")
 public class CarController {
 
+    private final CategoryDao categoryDao;
+
     @ModelAttribute("languages")
     public List<String> checkOptions() {
         System.out.println("checkOptions()");
@@ -21,7 +23,8 @@ public class CarController {
 
     private final CarService carService;
 
-    public CarController(CarService carService) {
+    public CarController(CategoryDao categoryDao, CarService carService) {
+        this.categoryDao = categoryDao;
         this.carService = carService;
     }
 
@@ -35,9 +38,8 @@ public class CarController {
 
     @GetMapping("/add")
     public String addCar(Model model) {
-        Car car = new Car();
-        car.setModelName("Passat");
-        model.addAttribute("car", car);
+        model.addAttribute("categories", categoryDao.findAll());
+        model.addAttribute("car", new Car());
         return "cars/add";
     }
 
