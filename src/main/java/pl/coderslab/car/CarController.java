@@ -34,7 +34,8 @@ public class CarController {
     @ResponseBody
     public String addCar() {
         Car car = new Car();
-        car.setModelName("Passat");
+        car.setModelName("Passat").setDescription("asdasd");
+
         User byId = userDao.findById(1l);
         car.setUser(byId);
         carService.save(car);

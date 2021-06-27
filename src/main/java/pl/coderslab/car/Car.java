@@ -36,8 +36,9 @@ public class Car {
         return modelName;
     }
 
-    public void setModelName(String modelName) {
+    public Car setModelName(String modelName) {
         this.modelName = modelName;
+        return this;
     }
 
     public String getDescription() {
